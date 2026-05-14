@@ -125,10 +125,36 @@ tr:hover td{background:#f5f2ed}
 #toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:12px;padding:7px 18px;border-radius:20px;opacity:0;transition:opacity .3s;z-index:9999;pointer-events:none;font-family:'IBM Plex Mono',monospace}
 footer{border-top:1px solid var(--border);padding:14px 22px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:.5rem}
 footer strong{color:var(--ink)}
+#login-screen{position:fixed;inset:0;background:#1A3A6B;display:flex;align-items:center;justify-content:center;z-index:99999}
+#login-box{background:#fff;border-radius:8px;padding:40px 44px;width:340px;box-shadow:0 20px 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px}
+.lb-brand{display:flex;align-items:center;gap:8px}
+.lb-dot{width:11px;height:11px;border-radius:50%;background:#C17F24;flex-shrink:0}
+.lb-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#1A3A6B}
+.lb-sub{font-size:12px;color:#6B6860;margin-top:-10px}
+.lb-label{font-size:11px;font-weight:600;color:#1A3A6B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.lb-input{width:100%;padding:10px 12px;border:1.5px solid #D8D3CB;border-radius:4px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;outline:none;transition:border .15s}
+.lb-input:focus{border-color:#1A3A6B}
+.lb-btn{width:100%;padding:11px;background:#1A3A6B;color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:600;font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:background .15s}
+.lb-btn:hover{background:#C17F24}
+.lb-err{font-size:12px;color:#8B1A1A;text-align:center;min-height:18px;font-family:'IBM Plex Mono',monospace}
+#login-screen.hide{display:none}
+
 @media(max-width:860px){.kpis{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr}.mast{padding:22px 18px 16px}.mast h1{font-size:18px}.wrap{padding:18px 10px 44px}.phdr{padding:14px 18px 10px}.lcard{flex-direction:column;gap:6px}.lright{align-items:flex-start}.nav-links{display:none}}
 </style>
 </head>
 <body>
+<div id="login-screen">
+  <div id="login-box">
+    <div class="lb-brand"><div class="lb-dot"></div><span class="lb-name">Aiplates</span></div>
+    <p class="lb-sub">Licita&ccedil;&otilde;es MG &mdash; Acesso Restrito</p>
+    <div>
+      <div class="lb-label">Senha</div>
+      <input class="lb-input" id="lb-pwd" type="password" placeholder="Digite a senha..." onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="lb-btn" onclick="doLogin()">Entrar</button>
+    <div class="lb-err" id="lb-err"></div>
+  </div>
+</div>
 <div id="toast"></div>
 <div class="notif-panel" id="notif-panel">
   <div class="notif-hdr"><span class="notif-hdr-t">&#128276; Novas Oportunidades</span><button class="notif-clr" onclick="clearNotif()">Limpar</button></div>
@@ -463,6 +489,25 @@ window.expPage=function(pg){
   if(pg==='enc'){var q4=(document.getElementById('enc-s').value||'').toLowerCase();expCSV(sortData(EN.filter(function(l){return(!encCat||l.cat===encCat)&&(!q4||(l.obj+l.muni+(l.orgao||'')).toLowerCase().indexOf(q4)>=0)}),document.getElementById('enc-ord').value),'encerrados')}
 };
 bDash();renderNotifs();
+</script>
+<script>
+(function(){
+  var HASH='53b3968e9de1fe6be6ba971848e888a1808aab2ff72b437e8468db9f3949f592';
+  var KEY='aiplates_auth';
+  async function sha256(msg){
+    var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+  }
+  function unlock(){document.getElementById('login-screen').classList.add('hide');document.body.style.overflow='';}
+  if(sessionStorage.getItem(KEY)==='1'){unlock();return;}
+  document.body.style.overflow='hidden';
+  window.doLogin=async function(){
+    var pwd=document.getElementById('lb-pwd').value;
+    var h=await sha256(pwd);
+    if(h===HASH){sessionStorage.setItem(KEY,'1');unlock();}
+    else{document.getElementById('lb-err').textContent='Senha incorreta';document.getElementById('lb-pwd').value='';document.getElementById('lb-pwd').focus();}
+  };
+})();
 </script>
 </body>
 </html>
