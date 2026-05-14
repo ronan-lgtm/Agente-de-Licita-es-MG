@@ -1,0 +1,39 @@
+name: Publicar Dashboard Aiplates
+
+on:
+  # Disparo manual pelo GitHub (botão "Run workflow")
+  workflow_dispatch:
+
+  # Recebe o push do seu PC via git push
+  push:
+    branches: [main]
+    paths:
+      - "docs/index.html"   # só publica quando o HTML mudou
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artefato (pasta docs/)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

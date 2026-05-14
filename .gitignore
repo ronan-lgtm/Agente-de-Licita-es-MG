@@ -1,0 +1,25 @@
+# Banco SQLite — fica só no seu PC, não vai pro GitHub
+*.db
+*.db-shm
+*.db-wal
+
+# Logs locais
+*.log
+
+# Excel gerado localmente
+licitacoes_mg_*.xlsx
+
+# Arquivo temporário de tarefa agendada
+tarefa.xml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/
+
+# Windows
+Thumbs.db
+desktop.ini
