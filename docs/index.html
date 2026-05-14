@@ -139,6 +139,25 @@ footer strong{color:var(--ink)}
 .lb-err{font-size:12px;color:#8B1A1A;text-align:center;min-height:18px;font-family:'IBM Plex Mono',monospace}
 #login-screen.hide{display:none}
 
+
+.aj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.aj-card{background:var(--w);border:1px solid var(--border);border-radius:4px;padding:20px 22px}
+.aj-card h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:14px}
+.aj-step{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}
+.aj-step:last-child{border-bottom:none;padding-bottom:0}
+.aj-num{min-width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.aj-txt{font-size:12px;color:var(--ink);line-height:1.6}
+.aj-txt strong{color:var(--accent)}
+.aj-txt code{font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--paper);padding:1px 5px;border-radius:2px;border:1px solid var(--border);word-break:break-all}
+.aj-tip{background:#E6EDF8;border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 4px 4px 0;font-size:12px;color:var(--ink);line-height:1.6;margin-top:14px}
+.aj-tip strong{color:var(--accent)}
+.leg-tbl{width:100%;border-collapse:collapse}
+.leg-tbl td{font-size:12px;padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.leg-tbl tr:last-child td{border-bottom:none}
+.leg-tbl td:first-child{width:135px;font-family:'IBM Plex Mono',monospace;font-size:11px;white-space:nowrap}
+.leg-pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;padding:3px 9px;border-radius:2px;color:#fff}
+.leg-dot{width:10px;height:10px;border-radius:2px;display:inline-block;vertical-align:middle;margin-right:5px}
+@media(max-width:860px){.aj-grid{grid-template-columns:1fr}}
 @media(max-width:860px){.kpis{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr}.mast{padding:22px 18px 16px}.mast h1{font-size:18px}.wrap{padding:18px 10px 44px}.phdr{padding:14px 18px 10px}.lcard{flex-direction:column;gap:6px}.lright{align-items:flex-start}.nav-links{display:none}}
 </style>
 </head>
@@ -170,6 +189,7 @@ footer strong{color:var(--ink)}
     <button class="nbtn" onclick="go('todos')">&#127758; Todos MG</button>
     <button class="nbtn" onclick="go('munis')">&#128205; Munic&iacute;pios</button>
     <button class="nbtn" onclick="go('enc')">&#9675; Encerradas</button>
+    <button class="nbtn" onclick="go('ajuda')">&#10067; Ajuda</button>
   </div>
   <div class="nav-right">
     <a href="https://pncp.gov.br/app/editais?q=&status=recebendo_proposta&pagina=1" target="_blank" rel="noopener" class="nav-pncp">&#8599; Portal PNCP</a>
@@ -319,6 +339,83 @@ footer strong{color:var(--ink)}
 </div>
 </div>
 
+<!-- AJUDA -->
+<div id="pg-ajuda" class="page">
+<div class="phdr"><h2>&#10067; Ajuda &mdash; Como usar o Aiplates</h2><p>Guia r&aacute;pido de uso e legenda das informa&ccedil;&otilde;es</p></div>
+<div class="wrap">
+
+  <div class="aj-grid">
+    <div class="aj-card">
+      <h3>&#128203; Como acessar um edital no PNCP</h3>
+      <div class="aj-step"><div class="aj-num">1</div><div class="aj-txt">Encontre o edital em qualquer aba &mdash; <strong>Em Aberto</strong>, <strong>Urgentes</strong>, <strong>Alvos</strong> etc.</div></div>
+      <div class="aj-step"><div class="aj-num">2</div><div class="aj-txt">Clique em <strong>&#128203; Copiar</strong> no card. O c&oacute;digo do edital &eacute; copiado para a &aacute;rea de transfer&ecirc;ncia.<br>Exemplo: <code>18239038000187-1-000013/2026</code></div></div>
+      <div class="aj-step"><div class="aj-num">3</div><div class="aj-txt">Clique em <strong>&#8599; Portal PNCP</strong> no menu superior. O portal abre em nova aba.</div></div>
+      <div class="aj-step"><div class="aj-num">4</div><div class="aj-txt">Cole o c&oacute;digo no campo de busca do portal e pressione <strong>Enter</strong> para localizar o edital completo.</div></div>
+      <div class="aj-tip"><strong>Dica:</strong> Editais <span style="color:var(--red);font-weight:600">&#9889; Urgentes</span> t&ecirc;m prazo &le; 5 dias e score &ge; 10. Priorize-os para n&atilde;o perder o envio de propostas.</div>
+    </div>
+    <div class="aj-card">
+      <h3>&#128276; Notifica&ccedil;&otilde;es e Atualiza&ccedil;&atilde;o</h3>
+      <div class="aj-step"><div class="aj-num">1</div><div class="aj-txt">O <strong>sininho &#128276;</strong> no canto superior direito mostra quantas novas oportunidades n&atilde;o foram visualizadas.</div></div>
+      <div class="aj-step"><div class="aj-num">2</div><div class="aj-txt">Clique para abrir o painel. Novidades t&ecirc;m borda dourada. Ao abrir, todas s&atilde;o marcadas como vistas.</div></div>
+      <div class="aj-step"><div class="aj-num">3</div><div class="aj-txt">O site &eacute; atualizado todo dia &agrave;s <strong>11:00</strong>. Recarregue a p&aacute;gina para ver as novidades do dia.</div></div>
+      <div class="aj-tip"><strong>Notificam:</strong> Publicados hoje &bull; Urgentes (score &ge;10 e prazo &le;5d) &bull; Alta relev&acirc;ncia em munic&iacute;pios alvo</div>
+    </div>
+  </div>
+
+  <div class="aj-grid">
+    <div class="aj-card">
+      <h3>&#127775; Legenda &mdash; Relev&acirc;ncia (Score)</h3>
+      <table class="leg-tbl">
+        <tr><td><span class="leg-pill" style="background:#1B5E3B">&#11088;&#11088;&#11088; Alta</span></td><td>Score &ge; 10. CFTV, LPR, videomonitoramento, firewall, frotas integradas. <strong>A&ccedil;&atilde;o imediata.</strong></td></tr>
+        <tr><td><span class="leg-pill" style="background:#C17F24">&#11088;&#11088; M&eacute;dia</span></td><td>Score 6&ndash;9. Cabeamento, servidores, monitoramento, telemetria. Vale an&aacute;lise.</td></tr>
+        <tr><td><span class="leg-pill" style="background:#6B6860">&#11088; Baixa</span></td><td>Score 2&ndash;5. Termos tang&ecirc;nciais. Alta chance de falso positivo.</td></tr>
+        <tr><td><span class="leg-pill" style="background:#bbb;color:#555">Irrelevante</span></td><td>Score 0&ndash;1. Sem termo relevante. Vis&iacute;vel s&oacute; em <em>Todos MG</em>.</td></tr>
+      </table>
+    </div>
+    <div class="aj-card">
+      <h3>&#127988; Status e Tags dos Cards</h3>
+      <table class="leg-tbl">
+        <tr><td><span style="color:var(--green);font-weight:600">&#9679; Aberta</span></td><td>Prazo n&atilde;o venceu. Borda verde no card.</td></tr>
+        <tr><td><span style="color:var(--red);font-weight:600">&#9889; Urgente</span></td><td>Score &ge;10 e prazo &le;5 dias. Borda vermelha.</td></tr>
+        <tr><td><span style="color:var(--muted);font-weight:600">&#9675; Encerrada</span></td><td>Prazo j&aacute; passou. Exibida por at&eacute; 3 dias.</td></tr>
+        <tr><td><span class="bmod">&#10003; Alvo</span></td><td>Um dos 126 munic&iacute;pios estrat&eacute;gicos monitorados.</td></tr>
+        <tr><td><span class="stag">score 34</span></td><td>Soma dos pesos dos termos encontrados. B&ocirc;nus +5 para &oacute;rg&atilde;os estrat&eacute;gicos (CEMIG, Pol&iacute;cia Civil, Guarda Municipal...).</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="aj-grid">
+    <div class="aj-card">
+      <h3>&#127758; P&aacute;ginas do site</h3>
+      <table class="leg-tbl">
+        <tr><td><strong>Dashboard</strong></td><td>KPIs, gr&aacute;ficos, abertos hoje, urgentes e destaques Alta.</td></tr>
+        <tr><td><strong>Em Aberto</strong></td><td>Todos os editais ativos (score &ge;2). Filtros por categoria e ordena&ccedil;&atilde;o.</td></tr>
+        <tr><td><strong>Urgentes</strong></td><td>Score &ge;10 e prazo &le;5 dias. A&ccedil;&atilde;o imediata recomendada.</td></tr>
+        <tr><td><strong>Alvos</strong></td><td>126 munic&iacute;pios estrat&eacute;gicos separados dos demais.</td></tr>
+        <tr><td><strong>Todos MG</strong></td><td>Todas as licitações com filtros livres de status e categoria.</td></tr>
+        <tr><td><strong>Munic&iacute;pios</strong></td><td>Ranking por volume de licitações relevantes encontradas.</td></tr>
+        <tr><td><strong>Encerradas</strong></td><td>Hist&oacute;rico dos &uacute;ltimos 3 dias (score &ge;2).</td></tr>
+      </table>
+    </div>
+    <div class="aj-card">
+      <h3>&#127775; Categorias monitoradas (151 termos)</h3>
+      <table class="leg-tbl">
+        <tr><td><span class="leg-dot" style="background:#1B5E3B"></span>Videomonitoramento</td><td>CFTV, c&acirc;meras IP, bodycam, Olho Vivo, CICC, monitoramento perimetral</td></tr>
+        <tr><td><span class="leg-dot" style="background:#1A3A6B"></span>Infraestrutura TI</td><td>Fibra &oacute;ptica, cabeamento, data center, switches, VoIP, VDI, thin clients</td></tr>
+        <tr><td><span class="leg-dot" style="background:#C17F24"></span>Frotas / Telemetria</td><td>Rastreamento veicular, telemetria, gest&atilde;o de frotas, despacho</td></tr>
+        <tr><td><span class="leg-dot" style="background:#8B1A1A"></span>Reconhecimento / LPR</td><td>LPR, ANPR, OCR veicular, reconhecimento facial, biometria</td></tr>
+        <tr><td><span class="leg-dot" style="background:#6B1A1A"></span>Cybersecurity</td><td>Firewall, SIEM, pentest, prote&ccedil;&atilde;o de endpoint, ciberseguran&ccedil;a</td></tr>
+        <tr><td><span class="leg-dot" style="background:#3C3489"></span>IA / Software</td><td>IA, chatbot, automa&ccedil;&atilde;o, nuvem, VDI, f&aacute;brica de software</td></tr>
+        <tr><td><span class="leg-dot" style="background:#888"></span>Drones</td><td>Drone, VANT, esta&ccedil;&atilde;o meteorol&oacute;gica, sensoriamento clim&aacute;tico</td></tr>
+        <tr><td><span class="leg-dot" style="background:#5A4700"></span>Engenharia El&eacute;trica</td><td>Subesta&ccedil;&atilde;o, cabeamento el&eacute;trico, SPDA, ilumina&ccedil;&atilde;o LED</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
 <footer>
   <div><strong>Aiplates</strong> &middot; PNCP &middot; 14/05/2026</div>
   <div>104 munic&iacute;pios &middot; 136 licitações &middot; Atualização 11:00</div>
@@ -371,9 +468,9 @@ function renderNotifs(){
 window.toggleNotif=function(){var p=document.getElementById('notif-panel');p.classList.toggle('open');if(p.classList.contains('open')){var items=buildNotifs();saveSeen(items.map(function(x){return x.id}));document.getElementById('bell-badge').style.display='none'}};
 window.clearNotif=function(){saveSeen([]);renderNotifs();document.getElementById('notif-panel').classList.remove('open');tst('Notificações limpas')};
 function go(id){
-  ['dash','ab','ur','alvo','todos','munis','enc'].forEach(function(p){document.getElementById('pg-'+p).classList.remove('on')});
+  ['dash','ab','ur','alvo','todos','munis','enc','ajuda'].forEach(function(p){document.getElementById('pg-'+p).classList.remove('on')});
   document.getElementById('pg-'+id).classList.add('on');
-  document.querySelectorAll('.nbtn').forEach(function(b,i){b.classList.toggle('on',['dash','ab','ur','alvo','todos','munis','enc'][i]===id)});
+  document.querySelectorAll('.nbtn').forEach(function(b,i){b.classList.toggle('on',['dash','ab','ur','alvo','todos','munis','enc','ajuda'][i]===id)});
   window.scrollTo(0,0);if(id==='munis')rMunis();if(id==='ur')rUr();if(id==='todos')rTodos();
 }
 function card(l){
